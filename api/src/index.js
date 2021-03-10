@@ -1,0 +1,41 @@
+import  express from 'express';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
+import { applyMiddleware } from "graphql-middleware";
+import typeDefs from './graphql/typeDefs'
+import resolvers from './graphql/resolvers/author';
+import mongoose from 'mongoose';
+import expressJwt from 'express-jwt';
+
+const server = new ApolloServer({
+  schema: applyMiddleware(
+    makeExecutableSchema({ typeDefs, resolvers}),
+  
+  ),
+  context: ({ req }) => {
+    const user = req.user || null;
+    return { user };
+  }
+});
+
+mongoose.connect(`mongodb+srv://amanpandey:aman1234@cluster0.eayko.mongodb.net/myBlogDatabase?retryWrites=true&w=majority`, {  
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+}).then(()=>console.log('Database Connected'
+)).catch((err)=>console.log(err));
+
+const app = express();
+app.use(
+  expressJwt({
+    secret: 'super secret',
+    algorithms: ["HS256"],
+    credentialsRequired: false
+  })
+  
+);
+server.applyMiddleware({ app });
+
+app.listen({ port: 5000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:5000${server.graphqlPath}`)
+);
