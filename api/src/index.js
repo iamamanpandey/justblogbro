@@ -2,7 +2,7 @@ import  express from 'express';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import { applyMiddleware } from "graphql-middleware";
 import typeDefs from './graphql/typeDefs'
-import resolvers from './graphql/resolvers/author';
+import resolvers from './graphql/resolvers/index.js';
 import mongoose from 'mongoose';
 import expressJwt from 'express-jwt';
 
@@ -36,6 +36,6 @@ app.use(
 );
 server.applyMiddleware({ app });
 
-app.listen({ port: 5000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:5000${server.graphqlPath}`)
+app.listen({ port: 8000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:8000${server.graphqlPath}`)
 );

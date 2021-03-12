@@ -8,17 +8,15 @@ export default {
             return await Authors.findById(args.id);
         },
         authors: async (parent, args, ctx) => {
-            console.log(ctx)
+       
             return await Authors.find();
         }
-
-
     },
     Mutation: {
         addAuthor: async (parent, args, ctx, info) => {
             try {
                 await Authors.create(args)
-                return "Auther has been created!,"
+                return "Author  has been added!!"
             } catch (error) {
                 return new ApolloError(error)
             }
