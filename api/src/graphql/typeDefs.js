@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql `
+const typeDefs = gql`
  
 type Query {
      author(id: ID!): Author!
@@ -17,15 +17,12 @@ type Query {
     addAuthor(name: String!, email: String!, password: String!): String!
     deleteAuthor(id: ID!): String!
 
-
-   
-    
-    addPost(title:String!, description: String!): String!
+    addPost(data:PostInput!): String!
+    updatePost(id:ID!,data:PostInput!):String!
     deletePost(id: ID!): String!
-
   },
 
-
+  
   type Author{
       id: ID!
       name: String!
@@ -42,6 +39,10 @@ type Query {
     updatedAt: Float!
 },
 
+ input PostInput{
+  title:String!
+  description: String!
+}
   
 `;
 export default typeDefs;
