@@ -8,6 +8,9 @@ type Query {
 
      post(id: ID!): Post!
      posts: [Post!]!
+
+     category(id:ID!):Category!
+     categories: [Category!]!
   },
 
 
@@ -20,6 +23,11 @@ type Query {
     addPost(data:PostInput!): String!
     updatePost(id:ID!,data:PostInput!):String!
     deletePost(id: ID!): String!
+
+    addCategory(data: CategoryInput!): String!
+    updateCategory(id:ID! data:CategoryInput!): String!
+    deleteCategory(id:ID!): String!
+
   },
 
   
@@ -40,6 +48,19 @@ type Query {
 },
 
  input PostInput{
+  title:String!
+  description: String!
+}
+
+  type Category{
+    id:ID!,
+    title:String,
+    description:String,
+    createdAt:Float!,
+    updatedAt:Float!
+  }
+
+input CategoryInput{
   title:String!
   description: String!
 }

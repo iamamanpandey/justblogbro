@@ -8,7 +8,6 @@ export default {
             return await Authors.findById(args.id);
         },
         authors: async (parent, args, ctx) => {
-       
             return await Authors.find();
         }
     },
