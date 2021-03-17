@@ -9,14 +9,17 @@ export default {
         author: async (parent, args, ctx) => {
             return await Authors.findById(args.id);
         },
+        me: async (parent, args, ctx) => {
+          return await Authors.findById(ctx.user.sub);
+      },
         authors: async (parent, args, ctx) => {
             return await Authors.find();
         }
     },
     Mutation: {
-        addAuthor: async (parent, args, ctx, info) => {
+        addAuthor: async (parent,{data} ,ctx, info) => {
             try {
-                await Authors.create(args)
+                await Authors.create(data)
                 return "Author  has been added!!"
             } catch (error) {
                 return new ApolloError(error)

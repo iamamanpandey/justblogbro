@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
  
 type Query {
+     me: Author!
      author(id: ID!): Author!
      authors: [Author!]!
 
@@ -17,7 +18,7 @@ type Query {
 
   type Mutation{
 
-    addAuthor(name: String!, email: String!, password: String!): String!
+    addAuthor(data:AuthorInput!): String!
     deleteAuthor(id: ID!): String!
     loginAuthor(email: String!, password: String!): LoginAuthor!
     
@@ -64,7 +65,11 @@ type Query {
     createdAt:Float!,
     updatedAt:Float!
   }
-
+input AuthorInput{
+  name: String!
+  email: String!
+  password: String!
+}
 input CategoryInput{
   title:String!
   description: String!

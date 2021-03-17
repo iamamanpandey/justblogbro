@@ -11,6 +11,25 @@ query posts{
     }
 }`;
 
+export const GET_ME = gql `
+query   me{
+      me{
+        id
+        name
+        email
+      }
+}`
+
+
+export const GET_ALL_AUTHOR = gql `
+query  authors{
+    authors{
+        id
+        name
+        email
+    }
+}`;
+
 
 export const ADD_POST = gql `
 mutation addPost($data:PostInput!){
@@ -27,6 +46,30 @@ mutation deletePost($id:ID!){
 export const EDIT_POST = gql`
   mutation updatePost($id: ID!, $data: PostInput!) {
     result: updatePost(id: $id, data: $data)
+  }
+`;
+export const REGISTER_AUTHOR = gql`
+  mutation addAuthor($data: AuthorInput!) {
+    result: addAuthor(data: $data)
+  
+  }
+`;
+export const LOGIN_AUTHOR = gql `
+ mutation loginAuthor($email: String!, $password: String!){
+    loginAuthor(email: $email, password:$password){
+      token
+     user{
+        id
+        name
+        email
+      }
+    }
+  }
+   `;
+
+export const DELETE_USER = gql`
+  mutation deleteAuthor($id: ID!) {
+    result: deleteAuthor(id: $id)
   }
 `;
 

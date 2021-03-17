@@ -5,13 +5,12 @@ import typeDefs from './graphql/typeDefs'
 import permission from './graphql/permission'
 import resolvers from './graphql/resolvers/index.js';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 
 const server = new ApolloServer({
   schema: applyMiddleware(
-    makeExecutableSchema({ typeDefs, resolvers,permission}),
-  
+    makeExecutableSchema({ typeDefs, resolvers}),
+    permission
   ),
   context: ({ req }) => {
     const user = req.user || null;
