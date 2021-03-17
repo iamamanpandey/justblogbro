@@ -19,11 +19,12 @@ type Query {
 
     addAuthor(name: String!, email: String!, password: String!): String!
     deleteAuthor(id: ID!): String!
-
+    loginAuthor(email: String!, password: String!): LoginAuthor!
+    
     addPost(data:PostInput!): String!
     updatePost(id:ID!,data:PostInput!):String!
     deletePost(id: ID!): String!
-
+     
     addCategory(data: CategoryInput!): String!
     updateCategory(id:ID! data:CategoryInput!): String!
     deleteCategory(id:ID!): String!
@@ -38,6 +39,10 @@ type Query {
       createdAt: Float!
       updatedAt: Float!
   },
+  type LoginAuthor {
+    token: String!
+    user:Author!
+}
 
   type Post{
     id: ID!

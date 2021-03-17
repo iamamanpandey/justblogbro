@@ -1,5 +1,7 @@
-import {  ApolloError } from 'apollo-server-express';
+import {  ApolloError ,AuthenticationError} from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
 import { Authors } from '../../models/index';
+
 
 
 export default {
@@ -20,6 +22,28 @@ export default {
                 return new ApolloError(error)
             }
         },
+        loginAuthor: async (parent, { email, password }) => {
+            try {
+              const user = await Authors.findOne({ email,password }).exec();
+                const token = jwt.sign(
+                  {
+                    payload: {email: user.email, name: user.name }
+                  },
+                   'super secret',
+                  {
+                    algorithm: "HS256",
+                    subject: user.id,
+                    expiresIn: "1d"
+                  }
+                );
+      
+                return { token: token, user: user };
+      
+            } catch (error) {
+              return new AuthenticationError(error);
+            }
+          },
+      
         deleteAuthor: async (parent, args, ctx) => {
             try {
                 await Authors.findById(args.id).remove();
