@@ -15,6 +15,10 @@ const authorSchema = new Schema({
     type: String,
     required: true
   },
+  photo: {
+    type: String,
+    trim: true
+  },
  
 },{timestamps: true});
 

@@ -24,6 +24,7 @@ type Query {
     
     addPost(data:PostInput!): String!
     updatePost(id:ID!,data:PostInput!):String!
+    singleUpload(file: Upload!): File!
     deletePost(id: ID!): String!
      
     addCategory(data: CategoryInput!): String!
@@ -32,6 +33,12 @@ type Query {
 
   },
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+}
+scalar Upload
   
   type Author{
       id: ID!
@@ -56,6 +63,7 @@ type Query {
  input PostInput{
   title:String!
   description: String!
+
 }
 
   type Category{
@@ -65,6 +73,7 @@ type Query {
     createdAt:Float!,
     updatedAt:Float!
   }
+
 input AuthorInput{
   name: String!
   email: String!

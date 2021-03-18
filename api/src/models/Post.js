@@ -10,7 +10,11 @@ const postSchema = new Schema({
     description:{
         type:String,
         required:true
-    }
+    },
+     photo: {
+        type: String,
+        trim: true
+    },
 },{timestamps:true
 })
 

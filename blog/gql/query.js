@@ -8,8 +8,22 @@ query posts{
         id
         title
         description
+        createdAt
+        updatedAt
     }
 }`;
+
+export const GET_POST_BY_ID = gql `
+ query post($id:ID!){
+     post(id:$id){
+       id
+      title
+      description
+      updatedAt
+      createdAt
+    }
+}   
+`;
 
 export const GET_ME = gql `
 query   me{

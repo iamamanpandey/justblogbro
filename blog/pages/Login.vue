@@ -77,12 +77,12 @@ export default {
               password: this.password
             },
           })
-
           await this.$apolloHelpers.onLogin(data.loginAuthor.token, undefined, {
             expires: 1
           });
 
           this.$store.commit('setUser', {user: data.loginAuthor.user});
+
         } catch (error) {
            console.log(error);
         }
