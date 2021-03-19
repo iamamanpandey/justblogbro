@@ -16,7 +16,7 @@ export default {
       try {
         await Posts.create(data);
         return "Post has beeen created";
-      } catch (error) {
+       } catch (error) {
         return new ApolloError(error);
       }
     },

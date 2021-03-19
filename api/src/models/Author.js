@@ -1,26 +1,27 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const authorSchema = new Schema({
- name: {
-    type: String,
-    required: true 
+const authorSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    photo: {
+      type: String,
+      trim: true,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  photo: {
-    type: String,
-    trim: true
-  },
- 
-},{timestamps: true});
+  { timestamps: true }
+);
 
-
-export default mongoose.model('Authors', authorSchema);
+export default mongoose.model("Authors", authorSchema);
