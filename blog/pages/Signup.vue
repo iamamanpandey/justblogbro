@@ -1,7 +1,5 @@
 <template>
   <div>
-      <!-- component -->
-<!-- This is an example component -->
  <div class="font-sans">
             <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
                 <div class="relative sm:max-w-sm w-full">
@@ -35,15 +33,13 @@
                                 </button>
                             </div>                 
                            <div class="flex mt-8 justify-center w-full">
-                                <button class="mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                    
+                                <button class="mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">                                  
                                     Facebook
                                 </button>
                                 <button class="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                                     Google
                                 </button>
-                            </div>
-                
+                            </div>               
                             <div class="mt-8">
                                 <div class="flex justify-center items-center">
                                     <a href="#" class="w-full text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
@@ -54,8 +50,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>   
         </div>
   </div>
 </template>

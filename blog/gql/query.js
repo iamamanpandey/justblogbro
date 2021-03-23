@@ -13,6 +13,12 @@ query posts{
     }
 }`;
 
+export const UPLOAD_BANNER = gql `
+mutation bannerUpload($id:ID, $file:Upload!){
+    bannerUpload(id:$id, file:$file)
+}   
+`;
+
 export const GET_POST_BY_ID = gql `
  query post($id:ID!){
      post(id:$id){
