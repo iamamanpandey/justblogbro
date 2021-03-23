@@ -14,6 +14,6 @@ export default shield({
     addPost:isAuthenticated,
     updatePost:isAuthenticated,
     deletePost:isAuthenticated,
-    singleUpload:allow
+    bannerUpload:allow
   }
 });

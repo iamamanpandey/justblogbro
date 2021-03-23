@@ -1,6 +1,6 @@
 const { gql } = require("apollo-server-express");
 
-const typeDefs = gql`
+const typeDefs = gql `
   type Query {
     me: Author!
     author(id: ID!): Author!
@@ -20,7 +20,7 @@ const typeDefs = gql`
 
     addPost(data: PostInput!): String!
     updatePost(id: ID!, data: PostInput!): String!
-    singleUpload(file: Upload!): String!
+    bannerUpload(id:ID!, file: Upload!): File!
     deletePost(id: ID!): String!
 
     addCategory(data: CategoryInput!): String!

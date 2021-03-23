@@ -1,6 +1,7 @@
 import { ApolloError } from "apollo-server-express";
 import { Posts } from "../../models/index";
 import * as fs from "fs";
+
 const path = require("path");
 
 export default {
@@ -22,17 +23,30 @@ export default {
       }
     },
 
-
-
-    singleUpload: async (parent, args) => {
-
-        const { createReadStream, filename, mimetype } = await args.file; 
-      
-        await  new Promise((res)=>{
-          createReadStream().pipe(fs.createWriteStream(path.join(__dirname, "./upload",filename )).on("close", res))
-        });
-         return 'photo has been uploaded!!';   
-
+    bannerUpload: async (parent, {id, file}) => {
+          try {
+         const { createReadStream, filename, mimetype } = await file; 
+         const filepath = `./upload/${filename}`;
+         await  new Promise((resolve,reject)=>{
+          createReadStream()
+          .pipe(fs.createWriteStream(filepath))
+          .on("finish", async () => {
+            await Posts.findOneAndUpdate(
+              { _id: id },
+              { photo: filepath },
+              { new: true }
+            );
+            return resolve('photo added!');
+          })
+          .on("error", (err) => {
+            console.log(err);
+            return reject(err);
+          })
+         });
+         return file;
+         } catch (error) {
+          return new ApolloError(error);
+        }
     },
 
 
