@@ -20,7 +20,7 @@ const typeDefs = gql`
 
     addPost(data: PostInput!): String!
     updatePost(id: ID!, data: PostInput!): String!
-    singleUpload(file: Upload!): File!
+    singleUpload(file: Upload!): String!
     deletePost(id: ID!): String!
 
     addCategory(data: CategoryInput!): String!

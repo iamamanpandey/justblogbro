@@ -1,6 +1,7 @@
 import { ApolloError } from "apollo-server-express";
 import { Posts } from "../../models/index";
 import * as fs from "fs";
+const path = require("path");
 
 export default {
   Query: {
@@ -9,7 +10,7 @@ export default {
     },
     posts: async (parent, args, ctx) => {
       return await Posts.find().sort({ createdAt: -1 });
-    },
+    }, 
   },
   Mutation: {
     addPost: async (parent, { data }, ctx) => {
@@ -20,28 +21,32 @@ export default {
         return new ApolloError(error);
       }
     },
-    singleUpload: (parent, args) => {
-      console.log(args);
-      return args.file.then((file) => {
-        const { createReadStream, filename, mimetype } = file;
 
-        const fileStream = createReadStream();
 
-        fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`));
 
-        return file;
-      });
+    singleUpload: async (parent, args) => {
+
+        const { createReadStream, filename, mimetype } = await args.file; 
+      
+        await  new Promise((res)=>{
+          createReadStream().pipe(fs.createWriteStream(path.join(__dirname, "./upload",filename )).on("close", res))
+        });
+         return 'photo has been uploaded!!';   
+
     },
+
+
     updatePost: async (parent, { id, data }, ctx) => {
       try {
         await Posts.findByIdAndUpdate(id, data, {
-          new: true,
+          new: true, 
         });
         return "Updated post succesfully";
       } catch (error) {
         return new ApolloError(error);
       }
     },
+
     deletePost: async (parent, args, ctx) => {
       try {
         await Posts.findByIdAndRemove(args.id);

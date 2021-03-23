@@ -3,7 +3,7 @@
     <img  class="object-cover w-full img rounded-t-lg"  src="https://images.unsplash.com/photo-1586398710270-760041494553?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=80"/>
     <div class="py-2 px-4">
       <h1 class="text-2xl font-sans">{{ data.title }}</h1>
-      <p class="leading-snug font-sans ">{{ data.description }}</p>
+      <p class="leading-snug font-sans  "><span  v-html="data.description"></span></p>
     </div>
     <div class="relative flex justify-between px-2 py-1">
       <img

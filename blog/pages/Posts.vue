@@ -10,7 +10,7 @@
      
       <NuxtLink to="/login" v-else><button class="bg-blue-500 px-4 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"> Login </button></NuxtLink>
     </div>
-     <div class="w-1/4 mx-auto">
+     <div class="w-1/2 mx-auto">
         <Form :refetchData="refetchData"/>
     </div>
         <div class="container mx-auto">

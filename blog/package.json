@@ -16,9 +16,16 @@
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "graphql-upload": "^11.0.0",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "v-markdown-editor": "^1.2.6",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.4.2"
-  }
+  },
+  "description": "## Build Setup",
+  "main": "nuxt.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

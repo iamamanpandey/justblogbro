@@ -5,7 +5,10 @@ import typeDefs from "./graphql/typeDefs";
 import permission from "./graphql/permission";
 import resolvers from "./graphql/resolvers/index.js";
 import mongoose from "mongoose";
+import bodyParser from 'body-parser';
 import expressJwt from "express-jwt";
+const app = express();
+
 
 const server = new ApolloServer({
   schema: applyMiddleware(
@@ -31,7 +34,10 @@ mongoose
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
 
-const app = express();
+app.use(bodyParser.urlencoded());
+
+app.use(bodyParser.json({limit:'50mb'}));
+
 app.use(
   expressJwt({
     secret: "super secret",
