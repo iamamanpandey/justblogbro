@@ -1,5 +1,7 @@
 <template>
   <div>
+  
+    <side-bar/>
     <div class="mx-auto text-center">
 
       <div class="flex justify-end p-4" v-if="$store.state.isAuthenticated">
@@ -27,8 +29,10 @@
 
 <script>
 import { DELETE_POST, GET_ALL_POST } from "@/gql/query";
+import SideBar from '~/components/SideBar.vue';
 
 export default {
+  components: { SideBar },
   apollo: {
     posts: {
       query: GET_ALL_POST,
@@ -60,6 +64,6 @@ export default {
 
 <style>
 body{
-  background-color: #E5E7EB;
+  background-color: #fff;
 }
 </style>
