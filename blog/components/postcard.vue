@@ -10,7 +10,7 @@
         class="w-10 h-10  -mt-3 object-cover rounded-full shadow mr-2 cursor-pointer"
         alt="User avatar"
         src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
-      />
+       />
       <NuxtLink :to="`/post/${data.id}`">*3 min read</NuxtLink>
       <button @click="onDelete(data.id)">Delete</button>
     </div>

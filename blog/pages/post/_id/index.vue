@@ -1,10 +1,12 @@
 <template>
   <div>
+ 
     <div v-if="!post"></div>
     <div class="mx-auto text-center  w-1/2" v-else>
       <h1>{{ post.title }}</h1>
-      <p><span v-html="post.description"></span></p>
+      <span v-html="post.description"></span>
     </div>
+  
   </div>
 </template>
 
