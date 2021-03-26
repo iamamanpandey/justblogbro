@@ -18,9 +18,8 @@ const typeDefs = gql `
     deleteAuthor(id: ID!): String!
     loginAuthor(email: String!, password: String!): LoginAuthor!
 
-    addPost(data: PostInput!): String!
+    addPost(data: PostInput!, file:Upload!): String!
     updatePost(id: ID!, data: PostInput!): String!
-    bannerUpload(id:ID!, file: Upload!): File!
     deletePost(id: ID!): String!
 
     addCategory(data: CategoryInput!): String!
@@ -41,6 +40,7 @@ const typeDefs = gql `
     email: String!
     createdAt: Float!
     updatedAt: Float!
+    posts:[Post!]!
   }
   type LoginAuthor {
     token: String!
@@ -51,8 +51,10 @@ const typeDefs = gql `
     id: ID!
     title: String!
     description: String!
+    photo:String!
     createdAt: Float!
     updatedAt: Float!
+    author:Author!
   }
 
   input PostInput {

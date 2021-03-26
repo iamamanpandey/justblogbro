@@ -1,20 +1,20 @@
 import { ApolloError, AuthenticationError } from "apollo-server-express";
 import jwt from "jsonwebtoken";
-import { Authors } from "../../models/index";
+import { Authors, Posts } from "../../models/index";
 
 export default {
   Query: {
     author: async (parent, args, ctx) => {
-      return await Authors.findById(args.id);
+      return await  Authors.findById(args.id);
     },
     me: async (parent, args, ctx) => {
       return await Authors.findById(ctx.user.sub);
     },
     authors: async (parent, args, ctx) => {
-      return await Authors.find();
+      return await Authors.find()
     },
   },
-  Mutation: {
+  Mutation:{
     addAuthor: async (parent, { data }, ctx, info) => {
       try {
         await Authors.create(data);
@@ -62,4 +62,15 @@ export default {
       }
     },
   },
+
+  Author: {
+    posts: async (parent,args, ctx) => {
+      try {
+         return await Posts.find({author: parent.id}).exec()
+      } catch (error) {
+        return new ApolloError(error)
+      }
+    }
+},
+
 };

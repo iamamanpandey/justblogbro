@@ -8,16 +8,13 @@ query posts{
         id
         title
         description
+        photo
         createdAt
         updatedAt
     }
 }`;
 
-export const UPLOAD_BANNER = gql `
-mutation bannerUpload($id:ID, $file:Upload!){
-    bannerUpload(id:$id, file:$file)
-}   
-`;
+
 
 export const GET_POST_BY_ID = gql `
  query post($id:ID!){
@@ -25,6 +22,7 @@ export const GET_POST_BY_ID = gql `
        id
       title
       description
+      photo
       updatedAt
       createdAt
     }
@@ -52,8 +50,8 @@ query  authors{
 
 
 export const ADD_POST = gql `
-mutation addPost($data:PostInput!){
-    result: addPost(data: $data)
+mutation addPost($data:PostInput!,$file:Upload!){
+    result: addPost(data: $data, file:$file)
 }   
 `;
 

@@ -14,6 +14,11 @@ const postSchema = new Schema(
       type: String,
       trim: true,
     },
+    author:{
+      type:Schema.Types.ObjectId,
+      ref:'Authors'
+    }
+   
   },
   { timestamps: true }
 );

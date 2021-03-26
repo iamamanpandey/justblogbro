@@ -19,7 +19,7 @@ const authorSchema = new Schema(
     photo: {
       type: String,
       trim: true,
-    },
+    }
   },
   { timestamps: true }
 );

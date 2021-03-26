@@ -10,6 +10,9 @@ import expressJwt from "express-jwt";
 const app = express();
 
 
+
+app.use('/upload', express.static('upload'));
+
 const server = new ApolloServer({
   schema: applyMiddleware(
     makeExecutableSchema({ typeDefs, resolvers }),

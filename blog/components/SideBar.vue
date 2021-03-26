@@ -3,7 +3,7 @@
 
       <!-- component -->
 <!-- This is an example component -->
-<div class="min-h-screen">
+<div class="min-h-screen sidebar">
   <nav
         class="fixed inset-y-0 left-0 flex flex-col items-center justify-between w-24 h-screen py-6 text-white bg-indigo-700 rounded-r-3xl" >
         <div class="flex flex-col items-center content-center space-y-3">

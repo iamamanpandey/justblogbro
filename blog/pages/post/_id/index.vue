@@ -1,8 +1,8 @@
 <template>
   <div>
- 
     <div v-if="!post"></div>
     <div class="mx-auto text-center  w-1/2" v-else>
+    <img  :src="post.photo"/>
       <h1>{{ post.title }}</h1>
       <span v-html="post.description"></span>
     </div>
