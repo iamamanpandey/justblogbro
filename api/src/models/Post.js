@@ -17,6 +17,10 @@ const postSchema = new Schema(
     author:{
       type:Schema.Types.ObjectId,
       ref:'Authors'
+    },
+    category:{
+      type:Schema.Types.ObjectId,
+      ref:'Categories'
     }
    
   },

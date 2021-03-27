@@ -6,14 +6,16 @@ import * as fs from "fs";
 const path = require("path");
 
 export default {
+
   Query: {
     post: async (parent, args, ctx) => {
       return await (await Posts.findById(args.id)).populate('author').exec();
     },
     posts: async (parent, args, ctx) => {
       return await Posts.find().sort({ createdAt: -1 }).populate('author').exec();
-    },
+    }
   },
+
   Mutation: {
     addPost: async (parent, { data,file }, ctx) => {
       try {
@@ -26,10 +28,9 @@ export default {
             .pipe(fs.createWriteStream(filepath))
             .on("finish", async () => {
 
-        await Posts.create({...data, author: ctx.user.sub, photo:`http://localhost:8000/${filepath}`});
+         await Posts.create({...data, author: ctx.user.sub, photo:`http://localhost:8000/${filepath}`});
               return resolve("ho rha hai");
-             })
-            .on("error", (err) => {
+             }).on("error", (err) => {
               console.log(err);
               return reject(err);
             });

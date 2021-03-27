@@ -28,10 +28,8 @@
           @click="clearData"
          > Cancel
         </div>
-        <div
-          class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 hover:bg-indigo-800"
-          @click="onSubmit"
-          >
+        <div  class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 hover:bg-indigo-800"
+            @click="onSubmit">
           Post
         </div>
       </div>
@@ -40,12 +38,13 @@
 </template>
 
 <script>
-import { ADD_POST, UPLOAD_BANNER } from "@/gql/query";
+import { ADD_POST } from "@/gql/query";
 import { quillEditor, Quill } from "vue-quill-editor";
 export default {
   props: {
     refetchData: Function,
   },
+  
   data() {
     return {
       formData: {
@@ -68,14 +67,13 @@ export default {
   methods: {
     async onSubmit() {
       try {
-       const {data}= await this.$apollo.mutate({
+       await this.$apollo.mutate({
           mutation: ADD_POST,
           variables: {
             data: this.formData,
             file:this.file
           },
         });
-        console.log(data)
         this.clearData();
         this.refetchData();
       } catch (error) {

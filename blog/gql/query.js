@@ -11,9 +11,12 @@ query posts{
         photo
         createdAt
         updatedAt
+        author{
+           id
+           name
+        }
     }
 }`;
-
 
 
 export const GET_POST_BY_ID = gql `
@@ -45,6 +48,9 @@ query  authors{
         id
         name
         email
+        posts{
+          title
+        }
     }
 }`;
 

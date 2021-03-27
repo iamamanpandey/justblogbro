@@ -10,12 +10,10 @@ export default {
       return await Categories.find();
     },
   },
-
   Mutation: {
     addCategory: async (parent, { data }, ctx) => {
       try {
         await Categories.create(data);
-
         return "Category  has been created";
       } catch (error) {
         return new ApolloError(error);

@@ -21,21 +21,23 @@
               <nuxt-link to="/contactus" class="ml-4 font-medium text-gray-700 hover:text-gray-900 sm:ml-8">
                 Contact Us
               </nuxt-link>
+                <nuxt-link to="/authors" class="ml-4 font-medium text-gray-700 hover:text-gray-900 sm:ml-8">
+                  Authors
+               </nuxt-link>
              </div>
-            
 
-<div class="flex justify-end">
+<div class="flex justify-end ml-64">
                 <div class="flex" v-if="!isLoggedIn">
-                <button to="/login" data-fancybox data-src="#loginModal" class="w-1/2 flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
+               <nuxt-link to="/login"> <button data-fancybox data-src="#loginModal" class="w-1/2 flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
                   Log In 
-                </button>  
+                </button></nuxt-link>
             </div>
 
              <div class="flex" v-if="isLoggedIn">
-                <p class="my-auto"> {{ $store.state.user.name }}</p>
-                <button to="/login" data-fancybox data-src="#loginModal" class="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
+                <p class="my-auto mx-4"> {{ $store.state.user.name }}</p>
+              <nuxt-link to="/login"> <button   @click="onlogout" data-fancybox data-src="#loginModal" class="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
                   Log out 
-                </button>          
+                </button></nuxt-link>       
             </div>
             </div>
             </div>
@@ -116,6 +118,15 @@
                       Contact
                     </span>
                   </nuxt-link>
+
+                   <nuxt-link to="/authors" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-200">
+                    <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="ml-3 text-base font-medium text-gray-900">
+                      Authors
+                    </span>
+                  </nuxt-link>
                 </nav>
               </div>
             </div>
@@ -129,7 +140,7 @@
             <div class="pt-4 pb-3" v-if="isLoggedIn">
               <div class="flex items-center px-5 space-x-3">
                 <p class="mt-3 mx-2">welcome {{ $store.state.user.name }}</p>
-                <button to="/login" data-fancybox data-src="#loginModal" class="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
+                <button to="/login" data-fancybox data-src="#loginModal" @click="onlogout" class="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded shadow-sm text-base font-medium text-white bg-black hover:bg-gray-900">
                   Log out 
                 </button>
               </div>
@@ -157,9 +168,9 @@ export default {
     hide(){
       this.openMenu = false
     },
-    logout(){
-      this.$store.commit('logoutUser')
-    }
+    onlogout() {
+      this.$store.commit("logoutUser");
+    },
   },
   computed: {
     isLoggedIn(){

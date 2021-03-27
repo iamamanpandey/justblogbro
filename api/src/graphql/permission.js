@@ -7,12 +7,6 @@ const isAuthenticated = rule()((parent, args, {user}) => {
 
 export default shield({
 
-  Query:{
-  post:isAuthenticated,
-  author:isAuthenticated,
-  authors:isAuthenticated,
-  posts:isAuthenticated
-  },
 
   Mutation: {
     // TODO: USER MUTATIONS PERMISSION

@@ -19,7 +19,7 @@
 
 <body>
     <div class="flex" style="font-family: Arial;" x-data="{ open: true }">
-        <div class="sidebar h-screen" style="width: 260px;" x-show="open">
+         <div class="sidebar h-screen" style="width: 260px;" x-show="open">
             <div>
                 <div class="text-purple-200 bg-purple-700 h-14 mx-auto block px-4 py-5">
                     WELCOME, ADMIN
