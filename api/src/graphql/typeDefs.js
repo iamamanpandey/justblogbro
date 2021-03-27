@@ -14,7 +14,7 @@ const typeDefs = gql `
   }
 
   type Mutation {
-    addAuthor(data: AuthorInput!): String!
+    addAuthor(data: AuthorInput!, file:Upload!): String!
     deleteAuthor(id: ID!): String!
     loginAuthor(email: String!, password: String!): LoginAuthor!
 
@@ -39,10 +39,12 @@ const typeDefs = gql `
     id: ID!
     name: String!
     email: String!
+    photo:String!
     createdAt: Float!
     updatedAt: Float!
     posts:[Post!]!
   }
+  
   type LoginAuthor {
     token: String!
     user: Author!

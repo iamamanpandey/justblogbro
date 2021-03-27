@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="mx-auto text-center">
+    <!-- <div class="mx-auto text-center">
       <div class="flex justify-end p-4" v-if="$store.state.isAuthenticated">
-        <p class="mt-3 mx-2">welcome {{ $store.state.user.name }}</p>
+        <p class="mt-2 mx-2">{{$store.state.user.name}}</p>
+        <img   src="{$store.state.user.photo}"/>
         <button
           class="bg-blue-500 px-4 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:bg-red-500"
           @click="onLogOut"
@@ -17,7 +18,7 @@
           Login
         </button></NuxtLink
       >
-    </div>
+    </div> -->
     <div class="w-1/2 mx-auto">
       <Form :refetchData="refetchData" />
     </div>

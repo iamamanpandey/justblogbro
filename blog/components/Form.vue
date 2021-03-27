@@ -48,6 +48,7 @@
 <script>
 import { ADD_POST } from "@/gql/query";
 import { quillEditor, Quill } from "vue-quill-editor";
+
 export default {
   props: {
     refetchData: Function

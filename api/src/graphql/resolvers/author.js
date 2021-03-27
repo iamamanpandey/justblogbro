@@ -1,6 +1,8 @@
 import { ApolloError, AuthenticationError } from "apollo-server-express";
 import jwt from "jsonwebtoken";
 import { Authors, Posts } from "../../models/index";
+import * as fs from "fs";
+const path = require("path");
 
 export default {
   Query: {
@@ -16,10 +18,26 @@ export default {
   },
 
   Mutation:{
-    addAuthor: async (parent, { data }, ctx) => {
+    
+    addAuthor: async (parent, { data,file }, ctx) => {
       try {
-            await Authors.create(data);
-            return "author has been created"
+        const { createReadStream, filename, mimetype } = await file;
+        const newFilename = Date.now();
+        const filepath = `uploadprofile/${newFilename}.${path.extname(filename)}`;
+        console.log(data)
+        await new Promise((resolve, reject) => {
+          createReadStream()
+            .pipe(fs.createWriteStream(filepath))
+            .on("finish", async () => {
+
+         await Authors.create({...data, photo:`http://localhost:8000/${filepath}`});
+              return resolve("ho rha hai");
+             }).on("error", (err) => {
+              console.log(err);
+              return reject(err);
+            });
+        });
+        return "Author has beeen created";
       } catch (error) {
         return new ApolloError(error);
       }

@@ -1,58 +1,31 @@
 <template>
   <div>
     <!-- component -->
+     <NuxtLink :to="`/profile/${authprofile.id}`">
     <div
-      class="max-w-sm   mx-auto border border-light-red-300 mb-6 w-full md:w-1/2 lg:w-3/4 bg shadow-lg   rounded-lg transition duration-100 ease-in-out hover:bg-red-200 transform hover:-translate-y-4 hover:scale-100 "
-    >
-      <div
-        class="relative z-10"
-        style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));"
-       >
+      class="max-w-sm   mx-auto border border-green-300 mb-6 w-full md:w-1/2 lg:w-3/4 bg shadow-lg   rounded-lg transition duration-100 ease-in-out hover:bg-green-200 transform hover:-translate-y-4 hover:scale-100 "
+     >
+      
         <img
           class="w-full"
-          src="https://images.unsplash.com/photo-1567107989883-d7f4da0b59e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
+          :src="authprofile.photo"
           alt="Profile image"
-        />
-        <div class="text-center absolute w-full" style="bottom: 4rem">
-          <p class="text-white tracking-wide uppercase text-lg font-bold">
+        /> 
+     
+      <div class="pt-6 pb-8 text-gray-600 text-center">
+         <div class="text-center text-xl font-bold  w-full" style="bottom: 4rem">
+          <p class="text-black tracking-wide uppercase text-lg font-bold">
             {{ authprofile.name }}
           </p>
 
           <p class="text-gray-400 text-sm">{{ authprofile.email }}</p>
         </div>
-      </div>
-      <div
-        class="relative flex justify-between items-center flex-row px-6 z-50 -mt-10"
-       >
-        <p class="flex items-center text-gray-400">
-          <span
-            class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"
-          ></span
-          >online
-        </p>
-        <button
-          class="p-4 bg-red-600 rounded-full hover:bg-red-500 focus:bg-red-700 transition ease-in duration-200 focus:outline-none"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            enable-background="new 0 0 20 20"
-            class="w-6 h-6"
-           >
-            <path
-              fill="#FFFFFF"
-              d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
-                                  C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
-                                  C15.952,9,16,9.447,16,10z"
-            />
-          </svg>
-        </button>
-      </div>
-      <div class="pt-6 pb-8 text-gray-600 text-center">
         <p>Fullstack Developer</p>
         <p class="text-sm">Coding from Planet Earth</p>
-        <NuxtLink :to="`/profile/${authprofile.id}`"><p>See more</p></NuxtLink>
+     
       </div>
     </div>
+    </NuxtLink>
   </div>
 </template>
 

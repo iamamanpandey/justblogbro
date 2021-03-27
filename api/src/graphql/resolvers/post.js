@@ -8,7 +8,7 @@ const path = require("path");
 export default {
   Query: {
     post: async (parent, args, ctx) => {
-      return await (await Posts.findById(args.id)).populate('author').exec();
+      return await  Posts.findById(args.id).populate('author').exec();
     },
     posts: async (parent, args, ctx) => {
       return await Posts.find().sort({ createdAt: -1 }).populate('author').exec();
@@ -34,6 +34,7 @@ export default {
               return reject(err);
             });
         });
+       
         return "Post has beeen created";
       } catch (error) {
         return new ApolloError(error);

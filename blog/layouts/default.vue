@@ -2,7 +2,7 @@
   <div>
     <Navbar/>
     <Nuxt />
-    <Footer/>
+    <Footer class="position"/>
     <footer/>
   </div>
 </template>
@@ -24,7 +24,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
@@ -32,6 +32,11 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+.position{
+  position: relative;
+  width:100%;
+  bottom: 0;
 }
 
 .button--green {

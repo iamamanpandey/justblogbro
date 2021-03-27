@@ -14,10 +14,10 @@ query posts{
         author{
            id
            name
+           photo
         }
     }
 }`;
-
 
 export const GET_POST_BY_ID = gql `
  query post($id:ID!){
@@ -28,6 +28,11 @@ export const GET_POST_BY_ID = gql `
       photo
       updatedAt
       createdAt
+      author{
+        id
+        name
+        photo
+     }
     }
 }   
 `;
@@ -42,13 +47,13 @@ query   me{
 }`;
 
 
-
 export const GET_ALL_AUTHOR = gql `
 query  authors{
     authors{
         id
         name
         email
+        photo
     }
 }`;
 
@@ -58,6 +63,11 @@ export const GET_AUTHOR_BY_ID = gql `
       id  
       name
       email
+      photo
+      posts{
+        id
+        title
+      }
    }
  }
 `;
@@ -80,9 +90,8 @@ export const EDIT_POST = gql`
   }
 `;
 export const REGISTER_AUTHOR = gql`
-  mutation addAuthor($data: AuthorInput!) {
-    result: addAuthor(data: $data)
-  
+  mutation addAuthor($data: AuthorInput!,$file:Upload!) {
+    result: addAuthor(data: $data, file:$file)
   }
 `;
 export const LOGIN_AUTHOR = gql `
@@ -93,6 +102,7 @@ export const LOGIN_AUTHOR = gql `
         id
         name
         email
+        photo
       }
     }
   }

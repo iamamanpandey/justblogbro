@@ -5,12 +5,16 @@
     <div class="py-2 px-4">
       <h1 class="text-2xl font-sans">{{ data.title }}</h1>
       <h2 class="leading-snug font-sans">
-        <span v-html="data.description"></span>
+        <span v-html="data.description"> </span>
+        <NuxtLink :to="`/post/${data.id}`" class="text-red-500" >read more</NuxtLink>
       </h2>
     </div>
-    <div class="relative flex justify-between px-2 py-1">
-      <p class="text-sm font-mono">By {{ data.author.name }}</p>
-      <NuxtLink :to="`/post/${data.id}`" class="text-red-500" >read more</NuxtLink>
+    <div class="relative flex justify-between px-2 py-1 ">
+      <div class="flex position">
+      <img class="w-10 h-10 rounded-full border border-2 border-red-200 my-auto" :src="data.author.photo">
+     <NuxtLink :to="`/profile/${data.id}`">  <p class="text-sm font-mono my-auto p-2">By {{ data.author.name }}</p></NuxtLink>
+      </div>
+     
       <button @click="onDelete(data.id)">Delete</button>
     </div>
   </div>
@@ -19,10 +23,6 @@
 <script>
 export default {
   props: ["data", "onRefetch", "onDelete"],
-
-  created() {
-    console.log(this.data);
-  },
 };
 </script>
 
@@ -30,6 +30,7 @@ export default {
 .bg {
   background-color: #fafcfa;
 }
+
 .img {
   height: 140px;
   width: 384px;
