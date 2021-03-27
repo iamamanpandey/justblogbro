@@ -17,11 +17,6 @@
 export default {
   props: ["data", "onRefetch", "onDelete"],
 
-  methods: {
-    async readPost(val) {
-      this.$router.push({ path: "/post", params: { pid: val } });
-    }
-  },
   created(){
     console.log(this.data)
   }

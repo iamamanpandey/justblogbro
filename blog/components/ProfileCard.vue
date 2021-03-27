@@ -24,6 +24,7 @@
     <div class="pt-6 pb-8 text-gray-600 text-center">
       <p>Fullstack Developer </p>
       <p class="text-sm">Coding from Planet Earth</p>
+      <NuxtLink :to="`/profile/${authprofile.id}`"><p>See more</p></NuxtLink>
     </div>
   </div>
 </div>
@@ -31,7 +32,13 @@
 
 <script>
 export default {
-    props:["authprofile"]
+    props:["authprofile"],
+
+     methods: {
+    async readPost(val) {
+      this.$router.push({ path: "/post", params: { pid: val } });
+    }
+  },
 
 }
 </script>

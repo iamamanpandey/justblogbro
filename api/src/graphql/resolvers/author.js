@@ -14,15 +14,17 @@ export default {
       return await Authors.find()
     },
   },
+
   Mutation:{
-    addAuthor: async (parent, { data }, ctx, info) => {
+    addAuthor: async (parent, { data }, ctx) => {
       try {
-        await Authors.create(data);
-        return "Author  has been added!!";
+            await Authors.create(data);
+            return "author has been created"
       } catch (error) {
         return new ApolloError(error);
       }
     },
+
     loginAuthor: async (parent, { email, password }) => {
       try {
         const user = await Authors.findOne({

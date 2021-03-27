@@ -39,7 +39,8 @@ query   me{
         name
         email
       }
-}`
+}`;
+
 
 
 export const GET_ALL_AUTHOR = gql `
@@ -48,12 +49,18 @@ query  authors{
         id
         name
         email
-        posts{
-          title
-        }
     }
 }`;
 
+export const GET_AUTHOR_BY_ID = gql `
+ query author($id:ID!){
+   author(id:$id){
+      id  
+      name
+      email
+   }
+ }
+`;
 
 export const ADD_POST = gql `
 mutation addPost($data:PostInput!,$file:Upload!){

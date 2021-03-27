@@ -25,6 +25,7 @@ const typeDefs = gql `
     addCategory(data: CategoryInput!): String!
     updateCategory(id: ID!, data: CategoryInput!): String!
     deleteCategory(id: ID!): String!
+    
   }
 
   type File {

@@ -6,7 +6,6 @@ import * as fs from "fs";
 const path = require("path");
 
 export default {
-
   Query: {
     post: async (parent, args, ctx) => {
       return await (await Posts.findById(args.id)).populate('author').exec();
@@ -34,7 +33,6 @@ export default {
               console.log(err);
               return reject(err);
             });
-
         });
         return "Post has beeen created";
       } catch (error) {
@@ -79,11 +77,11 @@ export default {
     },
     deletePost: async (parent, args, ctx) => {
       try {
-        await Posts.findByIdAndRemove(args.id);
-        return "post deleted Successfully!!!!!";
-       } catch (error) {
-        return new ApolloError(error);
-      }
+          await Posts.findByIdAndRemove(args.id);
+          return "post deleted Successfully!!!!!";
+        }  catch (error) {
+          return new ApolloError(error);
+       }
     },
   }
  

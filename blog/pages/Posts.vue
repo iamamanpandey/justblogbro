@@ -43,7 +43,7 @@ export default {
         mutation: DELETE_POST,
         variables: {
           id: id,
-        },
+        }
       });
       alert("post has been deleted");
       this.refetchData();

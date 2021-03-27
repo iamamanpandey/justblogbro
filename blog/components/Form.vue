@@ -5,7 +5,7 @@
     </div>
     <div
       class="max-w-full h-full bg-white flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm hover:shadow-lg"
-    >
+     >
         <input type="file" ref="banner" accept="image/*"  @change="previewBanner" />
 
       <input
@@ -44,7 +44,6 @@ export default {
   props: {
     refetchData: Function,
   },
-  
   data() {
     return {
       formData: {

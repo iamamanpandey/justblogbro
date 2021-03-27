@@ -6,11 +6,9 @@ const isAuthenticated = rule()((parent, args, {user}) => {
  });
 
 export default shield({
-
-
   Mutation: {
     // TODO: USER MUTATIONS PERMISSION
-    addPost:isAuthenticated,
+    addPost:allow,
     updatePost:isAuthenticated,
     deletePost:isAuthenticated,
   }
