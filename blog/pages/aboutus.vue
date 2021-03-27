@@ -1,6 +1,5 @@
 <template>
   <div>
-     
       <h1>This is about us section...</h1>
   </div>
 </template>

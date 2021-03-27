@@ -5,8 +5,13 @@
     </div>
     <div
       class="max-w-full h-full bg-white flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm hover:shadow-lg"
-     >
-        <input type="file" ref="banner" accept="image/*"  @change="previewBanner" />
+    >
+      <input
+        type="file"
+        ref="banner"
+        accept="image/*"
+        @change="previewBanner"
+      />
 
       <input
         class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"
@@ -21,16 +26,19 @@
         ref="myQuillEditor"
         :options="editorOption"
         class="my-6"
-       ></quill-editor>
+      ></quill-editor>
+
       <div class="buttons flex m-2">
         <div
           class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto hover:bg-red-500 hover:text-white"
           @click="clearData"
-         > Cancel
+         >Cancel
         </div>
-        <div  class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 hover:bg-indigo-800"
-            @click="onSubmit">
-          Post
+
+        <div
+          class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 hover:bg-indigo-800"
+          @click="onSubmit"
+        > Post
         </div>
       </div>
     </div>
@@ -42,36 +50,36 @@ import { ADD_POST } from "@/gql/query";
 import { quillEditor, Quill } from "vue-quill-editor";
 export default {
   props: {
-    refetchData: Function,
+    refetchData: Function
   },
   data() {
     return {
       formData: {
         title: "",
-        description: "",
+        description: ""
       },
-      file:null,
+      file: null,
       editorOption: {
         // some quill options
         modules: {
           toolbar: [
             ["bold", "italic", "underline", "strike"],
-            ["blockquote", "code-block", "image", "link"],
-          ],
-        },
-      },
+            ["blockquote", "code-block", "image", "link"]
+          ]
+        }
+      }
     };
   },
   components: { quillEditor },
   methods: {
     async onSubmit() {
       try {
-       await this.$apollo.mutate({
+        await this.$apollo.mutate({
           mutation: ADD_POST,
           variables: {
             data: this.formData,
-            file:this.file
-          },
+            file: this.file
+          }
         });
         this.clearData();
         this.refetchData();
@@ -93,18 +101,17 @@ export default {
     //       alert(error);
     //     }
     //   },
-      
-      previewBanner(event) {
-        this.file = event.target.files[0];
-      },
-      
+
+    previewBanner(event) {
+      this.file = event.target.files[0];
+    },
+
     clearData() {
       this.formData.title = null;
       this.formData.description = null;
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

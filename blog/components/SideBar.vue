@@ -1,22 +1,31 @@
 <template>
   <div>
-
-      <!-- component -->
-<!-- This is an example component -->
-<div class="min-h-screen sidebar ">
-  <nav
-        class="fixed inset-y-0 left-0 flex flex-col items-center justify-between w-24 h-screen py-6 text-white bg-indigo-700 rounded-r-3xl" >
+    <!-- component -->
+    <!-- This is an example component -->
+    <div class="min-h-screen sidebar ">
+      <nav
+        class="fixed inset-y-0 left-0 flex flex-col items-center justify-between w-24 h-screen py-6 text-white bg-indigo-700 rounded-r-3xl"
+       >
         <div class="flex flex-col items-center content-center space-y-3">
           <!-- Logo -->
           <a href="#" class="text-2xl font-medium">K-UI</a>
         </div>
         <!-- Links -->
         <ul class="w-full space-y-10">
-          <li class="relative flex items-center justify-center text-blue-900 bg-">
+          <li
+            class="relative flex items-center justify-center text-blue-900 bg-"
+           >
             <span class="sr-only">Home</span>
-            <div class="absolute top-0 right-0 w-5 h-5 transform -translate-y-full bg-white"></div>
-            <div class="absolute top-0 right-0 w-10 h-10 transform -translate-y-full bg-indigo-700 rounded-3xl"></div>
-            <a href="#" class="w-full py-2 pl-4 ml-4 bg-white outline-none rounded-l-3xl">
+            <div
+              class="absolute top-0 right-0 w-5 h-5 transform -translate-y-full bg-white"
+            ></div>
+            <div
+              class="absolute top-0 right-0 w-10 h-10 transform -translate-y-full bg-indigo-700 rounded-3xl"
+            ></div>
+            <a
+              href="#"
+              class="w-full py-2 pl-4 ml-4 bg-white outline-none rounded-l-3xl"
+            >
               <svg
                 class="w-8 h-8"
                 aria-hidden="true"
@@ -33,8 +42,12 @@
                 />
               </svg>
             </a>
-            <div class="absolute bottom-0 right-0 w-5 h-5 transform translate-y-full bg-white"></div>
-            <div class="absolute bottom-0 right-0 w-10 h-10 transform translate-y-full bg-indigo-700 rounded-3xl"></div>
+            <div
+              class="absolute bottom-0 right-0 w-5 h-5 transform translate-y-full bg-white"
+            ></div>
+            <div
+              class="absolute bottom-0 right-0 w-10 h-10 transform translate-y-full bg-indigo-700 rounded-3xl"
+            ></div>
           </li>
           <li class="relative text-indigo-900 group">
             <span class="sr-only">Settings</span>
@@ -109,7 +122,9 @@
         </ul>
         <!-- Footers -->
         <div>
-          <button class="p-2 transition-colors rounded-full hover:bg-indigo-900 focus:outline-none focus:ring">
+          <button
+            class="p-2 transition-colors rounded-full hover:bg-indigo-900 focus:outline-none focus:ring"
+          >
             <span class="sr-only">Logout</span>
             <svg
               class="w-8 h-8"
@@ -129,31 +144,39 @@
           </button>
         </div>
       </nav>
-</div>
+    </div>
 
-<div class="fixed bottom-5 right-5 flex items-center space-x-4">
-  <a href="https://twitter.com/ak_kamona" target="_blank" class="text-blue-600 hover:underline">Twitter</a>
-  <a href="https://github.com/Kamona-WD" target="_blank" class="text-blue-600 hover:underline">Github</a>
-</div>
+    <div class="fixed bottom-5 right-5 flex items-center space-x-4">
+      <a
+        href="https://twitter.com/ak_kamona"
+        target="_blank"
+        class="text-blue-600 hover:underline"
+        >Twitter</a
+      >
+      <a
+        href="https://github.com/Kamona-WD"
+        target="_blank"
+        class="text-blue-600 hover:underline"
+        >Github</a
+      >
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
 .group:hover .group-hover\:block {
-    display: block;
+  display: block;
 }
 
 .group:hover .group-hover\:bg-white {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .group:hover .group-hover\:text-indigo-700 {
-    color: rgb(67, 56, 202);
+  color: rgb(67, 56, 202);
 }
 </style>
