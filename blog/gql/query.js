@@ -43,6 +43,7 @@ query   me{
         id
         name
         email
+        photo
       }
 }`;
 
@@ -56,6 +57,7 @@ query  authors{
         photo
     }
 }`;
+
 
 export const GET_AUTHOR_BY_ID = gql `
  query author($id:ID!){

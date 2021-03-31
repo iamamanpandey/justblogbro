@@ -9,12 +9,12 @@
           <div class="flex items-center ">
             <div class="flex flex-row ">
               <nuxt-link to="/" class="block">
-                <img class="h-14 w-12" src="logo.jpg" alt="Tailwind UI" />
+                <img class="h-14 w-12"  alt="justblog UI" />
               </nuxt-link>
               <nuxt-link
                 to="/"
                 class="font-medium text-gray-700 hover:text-gray-900 sm:ml-16"
-               >
+                >
                 Home
               </nuxt-link>
               <nuxt-link

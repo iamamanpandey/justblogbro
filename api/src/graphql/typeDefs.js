@@ -11,7 +11,9 @@ const typeDefs = gql `
 
     category(id: ID!): Category!
     categories: [Category!]!
+
   }
+
 
   type Mutation {
     addAuthor(data: AuthorInput!, file:Upload!): String!
@@ -25,8 +27,10 @@ const typeDefs = gql `
     addCategory(data: CategoryInput!): String!
     updateCategory(id: ID!, data: CategoryInput!): String!
     deleteCategory(id: ID!): String!
-    
+   
   }
+
+  
 
   type File {
     filename: String!

@@ -10,7 +10,6 @@ import expressJwt from "express-jwt";
 const app = express();
 
 
-
 app.use('/upload', express.static('upload'));
 app.use('/uploadprofile', express.static('uploadprofile'));
 

@@ -2,7 +2,7 @@
   <div>
     <div v-if="!author"></div>
 
-    <div class="">
+    <div v-else>
       <div class="container mx-auto my-5 p-5 shadow-lg">
         <div class="md:flex no-wrap md:-mx-2">
           <!-- Left Side -->
