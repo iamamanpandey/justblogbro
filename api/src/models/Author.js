@@ -7,9 +7,18 @@ const authorSchema = new Schema(
       type: String,
       required: true,
     },
-    bio:{
-      type:String,
-      required:true
+    bio: {
+      type: String,
+      trim: true,
+    },
+    education: {
+      type: String,
+    },
+    work: {
+      type: String,
+    },
+    banner: {
+      type: String,
     },
     email: {
       type: String,
@@ -23,7 +32,7 @@ const authorSchema = new Schema(
     photo: {
       type: String,
       trim: true,
-    }
+    },
   },
   { timestamps: true }
 );

@@ -28,7 +28,7 @@
             <Postcard
               :data="item"
               :onRefetch="refetchData"
-              :onDelete="deletePost"
+              :onDelete="deletePost" 
               :key="index"
             />
           </template>

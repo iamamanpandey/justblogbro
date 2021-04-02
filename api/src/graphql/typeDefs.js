@@ -8,7 +8,7 @@ const typeDefs = gql `
 
     post(id: ID!): Post!
     posts: [Post!]!
-
+    
     category(id: ID!): Category!
     categories: [Category!]!
 
@@ -23,6 +23,11 @@ const typeDefs = gql `
     addPost(data: PostInput!, file:Upload!): String!
     updatePost(id: ID!, data: PostInput!): String!
     deletePost(id: ID!): String!
+    addlike(id:ID!, like:Int!):String!
+    addclaps(id:ID!, claps:Int!):String!
+
+    addkohinoor(id:ID!, kohinoor:Int!):String!
+
 
     addCategory(data: CategoryInput!): String!
     updateCategory(id: ID!, data: CategoryInput!): String!
@@ -31,6 +36,7 @@ const typeDefs = gql `
   }
 
   
+
 
   type File {
     filename: String!
@@ -59,6 +65,9 @@ const typeDefs = gql `
     title: String!
     description: String!
     photo:String!
+    likecount:Int
+    claps:Int!
+    kohinoor:Int!
     createdAt: Float!
     updatedAt: Float!
     author:Author!

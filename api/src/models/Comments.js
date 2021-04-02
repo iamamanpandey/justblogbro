@@ -1,39 +1,45 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
-export const commentSchema = new Schema({
-  comment: {
-    type: String,
+export const commentSchema = new Schema(
+  {
+    comment: {
+      type: String,
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "Authors",
+      required: true,
+    },
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Authors',
-    required: true
-  },
-}, {
-  timestamps: true
-})
+  {
+    timestamps: true,
+  }
+);
 
-const commentSchema = new Schema({
-  comment: {
-    type: String,
-    required: true,
-  }, 
-  post: {
-    type: Schema.Types.ObjectId,
-    ref: 'Posts',
-    required: true
+const commentSchema = new Schema(
+  {
+    comment: {
+      type: String,
+      required: true,
+    },
+    post: {
+      type: Schema.Types.ObjectId,
+      ref: "Posts",
+      required: true,
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "Authors",
+      required: true,
+    },
+    reply: {
+      type: [commentSchema],
+      default: [],
+    },
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Authors',
-    required: true
-  },
-  reply: {
-    type: [commentSchema],
-    default: []
-  },
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true,
+  }
+);
 
-export default model('Reviews', reviewSchema);
+export default model("Reviews", reviewSchema);

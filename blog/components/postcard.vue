@@ -6,29 +6,27 @@
     <div class="py-2 px-4">
       <h1 class="text-2xl font-sans">{{ data.title }}</h1>
       <h2 class="leading-snug font-sans">
-        <span v-html="data.description"> </span>
+        <span v-html="data.description" class="line-clamp"> </span>
         <NuxtLink :to="`/post/${data.id}`" class="text-red-500" >read more</NuxtLink>
+        <h1>{{data.likecount}}</h1>
       </h2>
     </div>
     <div class="relative flex justify-between px-2 py-1 ">
       <div class="flex position">
+        <NuxtLink :to="`/profile/${data.author.id}`" class="text-red-500" >
       <img class="w-10 h-10 rounded-full border border-2 border-red-200 my-auto" :src="data.author.photo">
-     <p class="text-sm font-mono my-auto p-2">By {{ data.author.name }}</p>
+     <p class="text-sm font-mono my-auto p-2">By {{ data.author.name }}</p></NuxtLink>
       </div>  
+      <button @click="onEdit(data.id)">Edit</button>
       <button @click="onDelete(data.id)">Delete</button>
     </div>
   </div>
 </template>
 
+
 <script>
 export default {
   props: ["data", "onRefetch", "onDelete"],
- 
- methods:{
-     authorProfile(){
-     this.$store.commit("authorprofile");
-     return this.router.push('/profile/${id}');
-  } }
 };
 </script>
 
@@ -40,5 +38,11 @@ export default {
 .img {
   height: 140px;
   width: 384px;
+}
+.line-clamp {
+   display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 </style>

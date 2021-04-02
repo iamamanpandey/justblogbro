@@ -10,6 +10,8 @@ export default {
       return await Categories.find();
     },
   },
+
+
   Mutation: {
     addCategory: async (parent, { data }, ctx) => {
       try {
@@ -19,6 +21,7 @@ export default {
         return new ApolloError(error);
       }
     },
+
     updateCategory: async (parent, { id, data }, ctx) => {
       try {
         await Categories.findByIdAndUpdate(id, data, { new: true });
@@ -27,6 +30,7 @@ export default {
         return new ApolloError(error);
       }
     },
+
     deleteCategory: async (parent, { id }, ctx) => {
       try {
         await Categories.findByIdAndDelete(id);

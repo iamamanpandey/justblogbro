@@ -9,6 +9,7 @@ query posts{
         title
         description
         photo
+        likecount
         createdAt
         updatedAt
         author{
@@ -27,6 +28,7 @@ export const GET_POST_BY_ID = gql `
       description
       photo
       updatedAt
+      likecount
       createdAt
       author{
         id

@@ -3,20 +3,28 @@ import { Posts } from "../../models/index";
 
 import * as fs from "fs";
 
+
 const path = require("path");
 
 export default {
   Query: {
     post: async (parent, args, ctx) => {
-      return await  Posts.findById(args.id).populate('author').exec();
+     var singlepost = await Posts.findById(args.id).populate("author").exec();
+     singlepost.likecount = (singlepost.likes.length)? singlepost.likes.length: 0;
+     return singlepost;  
     },
+
     posts: async (parent, args, ctx) => {
-      return await Posts.find().sort({ createdAt: -1 }).populate('author').exec();
-    }
+      const posts = await Posts.find().populate("author").exec();
+      return posts.map((post)=> {
+        post.likecount = post.likes.length;
+        return post;
+      })
+    },
   },
 
   Mutation: {
-    addPost: async (parent, { data,file }, ctx) => {
+    addPost: async (parent, { data, file }, ctx) => {
       try {
         const { createReadStream, filename, mimetype } = await file;
         const newFilename = Date.now();
@@ -26,15 +34,18 @@ export default {
           createReadStream()
             .pipe(fs.createWriteStream(filepath))
             .on("finish", async () => {
-
-         await Posts.create({...data, author: ctx.user.sub, photo:`http://localhost:8000/${filepath}`});
+              await Posts.create({
+                ...data,
+                author: ctx.user.sub,
+                photo: `http://localhost:8000/${filepath}`,
+              });
               return resolve("ho rha hai");
-             }).on("error", (err) => {
+            })
+            .on("error", (err) => {
               console.log(err);
               return reject(err);
             });
         });
-       
         return "Post has beeen created";
       } catch (error) {
         return new ApolloError(error);
@@ -68,7 +79,7 @@ export default {
     // },
     updatePost: async (parent, { id, data }, ctx) => {
       try {
-        await Posts.findByIdAndUpdate(id, data, {
+        await Posts.findByIdAndUpdate({id,author:ctx.user.sub } ,data, {
           new: true,
         });
         return "Updated post succesfully";
@@ -78,12 +89,66 @@ export default {
     },
     deletePost: async (parent, args, ctx) => {
       try {
-          await Posts.findByIdAndRemove(args.id);
-          return "post deleted Successfully!!!!!";
-        }  catch (error) {
-          return new ApolloError(error);
-       }
+        await Posts.findByIdAndRemove(args.id);
+        return "post deleted Successfully!!!!!";
+      } catch (error) {
+        return new ApolloError(error);
+      }
     },
-  }
- 
+
+    //add like
+
+    addlike: async (parent, { id }, { user }) => {
+      try {
+        const isLiked = await Posts.find({ _id: id, likes: { $in: user.sub } });
+
+        if (isLiked.length == 0) {
+          await Posts.updateOne(
+            { _id: id },
+            { $push: { likes: user.sub }, new: true }
+          );
+        } else {
+          await Posts.updateOne(
+            { _id: id },
+            { $pullAll: { likes: [user.sub] } }
+          );
+        }
+        return "like has been added!!";
+      } catch (error) {
+        return new ApolloError(error);
+      }
+    },
+
+
+    addclaps: async (parent, { id, claps }, ctx) => {
+      try {
+        const Like = Posts.findById(id);
+        await Like.updateOne({ $push: { claps } });
+        return "Claps has been added!!";
+      } catch (error) {
+        return new ApolloError(error);
+      }
+    },
+
+    addkohinoor: async (parent, { id }, { user }) => {
+      try {
+        const isLiked = await Posts.find({ _id: id, likes: { $in: user.sub } });
+
+        if (isLiked.length == 0) {
+          await Posts.updateOne(
+            { _id: id },
+            { $push: { kohinoors: user.sub }, new: true }
+          );
+        } else {
+          await Posts.updateOne(
+            { _id: id },
+            { $pullAll: { kohinoors: [user.sub] } }
+          );
+        }
+        return "kohinoor has been added!!";
+      } catch (error) {
+        return new ApolloError(error);
+      }
+    },
+  },
 };
