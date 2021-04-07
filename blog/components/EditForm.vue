@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { ADD_POST } from "@/gql/query";
+import { UPDATE_POST } from "@/gql/query";
 import { quillEditor, Quill } from "vue-quill-editor";
 
 export default {
@@ -76,7 +76,7 @@ export default {
     async onSubmit() {
       try {
         await this.$apollo.mutate({
-          mutation: ADD_POST,
+          mutation: UPDATE_POST,
           variables: {
             data: this.formData,
             file: this.file
@@ -102,6 +102,7 @@ export default {
     //       alert(error);
     //     }
     //   },
+
 
     previewBanner(event) {
       this.file = event.target.files[0];

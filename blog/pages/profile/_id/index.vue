@@ -89,10 +89,10 @@
                     <div class="px-4 py-2">+11 998001001</div>
                   </div>
 
-                  <div class="grid grid-cols-2"> 
+                  <div class="grid grid-cols-2">
                     <div class="px-4 py-2 font-semibold">Email.</div>
                     <div class="px-4 py-2">
-                      <a class="text-blue-800">{{author.email}}</a>
+                      <a class="text-blue-800">{{ author.email }}</a>
                     </div>
                   </div>
                 </div>
@@ -127,14 +127,6 @@
                     <span class="tracking-wide">Experience</span>
                   </div>
                   <ul class="list-inside space-y-2">
-                    <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
-                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                    </li>
-                    <li>
-                      <div class="text-teal-600">Owner at Her Company Inc.</div>
-                      <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                    </li>
                     <li>
                       <div class="text-teal-600">Owner at Her Company Inc.</div>
                       <div class="text-gray-500 text-xs">March 2020 - Now</div>
@@ -185,6 +177,34 @@
                 </div>
               </div>
               <!-- End of Experience and education grid -->
+
+              <h1>posts</h1>
+              <div v-for="item in author.posts" :key="item.id" class="flex">
+                <div
+                  class="max-w-sm mx-auto border border-light-red-300 mb-6 w-full md:w-1/2 lg:w-1/2 bg shadow-lg rounded-lg transition duration-100 ease-in-out hover:bg-red-200 transform hover:-translate-y-4 hover:scale-100"
+                >
+                  <div>
+                    <img
+                      class="object-cover img rounded-t-lg"
+                      :src="item.photo"
+                    />
+                  </div>
+                  <div class="py-2 px-4">
+                    <h1 class="text-2xl font-sans">{{ item.title }}</h1>
+                    <span
+                      class="text-sm font-sans line-clamp"
+                      v-html="item.description"
+                    ></span>
+                  </div>
+                  <div
+                    class="relative flex justify-between px-2 py-1"
+                    v-if="author.id == $store.state.user.id"
+                   >
+                    <button>Edit</button>
+                    <button @click="deletePost(item.id)">Delete</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- End of profile tab -->
           </div>
@@ -195,7 +215,7 @@
 </template>
 
 <script>
-import { GET_AUTHOR_BY_ID } from "@/gql/query";
+import { GET_AUTHOR_BY_ID, DELETE_POST } from "@/gql/query";
 export default {
   apollo: {
     author: {
@@ -208,6 +228,22 @@ export default {
       error(error) {
         console.log(error);
       },
+    },
+  },
+
+  methods: {
+    async deletePost(id) {
+      await this.$apollo.mutate({
+        mutation: DELETE_POST,
+        variables: {
+          id: id,
+        },
+      });
+      alert("post has been deleted");
+      this.refetchData();
+    },
+    refetchData() {
+      this.$apollo.queries.author.refetch();
     },
   },
 };
@@ -228,5 +264,15 @@ export default {
 
 .border-main-color {
   border-color: var(--main-color);
+}
+.img {
+  height: 140px;
+  width: 384px;
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

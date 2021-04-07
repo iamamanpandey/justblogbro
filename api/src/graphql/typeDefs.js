@@ -23,7 +23,7 @@ const typeDefs = gql `
     addPost(data: PostInput!, file:Upload!): String!
     updatePost(id: ID!, data: PostInput!): String!
     deletePost(id: ID!): String!
-    addlike(id:ID!, like:Int!):String!
+    addlike(id:ID!):String!
     addclaps(id:ID!, claps:Int!):String!
 
     addkohinoor(id:ID!, kohinoor:Int!):String!
@@ -66,8 +66,8 @@ const typeDefs = gql `
     description: String!
     photo:String!
     likecount:Int
-    claps:Int!
-    kohinoor:Int!
+    claps:Int
+    kohinoor:Int
     createdAt: Float!
     updatedAt: Float!
     author:Author!

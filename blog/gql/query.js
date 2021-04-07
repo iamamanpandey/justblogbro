@@ -71,6 +71,8 @@ export const GET_AUTHOR_BY_ID = gql `
       posts{
         id
         title
+        description
+        photo
       }
    }
  }
@@ -93,6 +95,15 @@ export const EDIT_POST = gql`
     result: updatePost(id: $id, data: $data)
   }
 `;
+
+
+export const ADD_LIKE = gql `
+mutation  addlike($id: ID!) {
+  addlike(id: $id)
+}
+`;
+
+
 export const REGISTER_AUTHOR = gql`
   mutation addAuthor($data: AuthorInput!,$file:Upload!) {
     result: addAuthor(data: $data, file:$file)

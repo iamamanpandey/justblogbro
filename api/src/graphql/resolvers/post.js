@@ -3,23 +3,24 @@ import { Posts } from "../../models/index";
 
 import * as fs from "fs";
 
-
 const path = require("path");
 
 export default {
   Query: {
     post: async (parent, args, ctx) => {
-     var singlepost = await Posts.findById(args.id).populate("author").exec();
-     singlepost.likecount = (singlepost.likes.length)? singlepost.likes.length: 0;
-     return singlepost;  
+      var singlepost = await Posts.findById(args.id).populate("author").exec();
+      singlepost.likecount = singlepost.likes.length
+        ? singlepost.likes.length
+        : 0;
+      return singlepost;
     },
 
     posts: async (parent, args, ctx) => {
       const posts = await Posts.find().populate("author").exec();
-      return posts.map((post)=> {
+      return posts.map((post) => {
         post.likecount = post.likes.length;
         return post;
-      })
+      });
     },
   },
 
@@ -79,7 +80,7 @@ export default {
     // },
     updatePost: async (parent, { id, data }, ctx) => {
       try {
-        await Posts.findByIdAndUpdate({id,author:ctx.user.sub } ,data, {
+        await Posts.findByIdAndUpdate({ id, author: ctx.user.sub }, data, {
           new: true,
         });
         return "Updated post succesfully";
@@ -87,9 +88,10 @@ export default {
         return new ApolloError(error);
       }
     },
-    deletePost: async (parent, args, ctx) => {
+
+    deletePost: async (parent, { id }, ctx) => {
       try {
-        await Posts.findByIdAndRemove(args.id);
+        await Posts.findOneAndRemove({ _id: id, author: ctx.user.sub });
         return "post deleted Successfully!!!!!";
       } catch (error) {
         return new ApolloError(error);
@@ -118,7 +120,6 @@ export default {
         return new ApolloError(error);
       }
     },
-
 
     addclaps: async (parent, { id, claps }, ctx) => {
       try {

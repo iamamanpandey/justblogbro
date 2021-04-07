@@ -12,11 +12,11 @@
         />
         <div
           class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed"
-         >
+          >
           <h2 class="text-4xl font-semibold leading-tight">{{post.title}}</h2>
           <span class="py-6"  v-html="post.description"></span>
           <div>
-            <button @click="like" class="bg-red-200 p-2 border shadow-lg rounded ">like</button>
+            <button  @click="addlike()" class="bg-red-200 p-2 border shadow-lg rounded">like</button>
             <p>{{post.likecount}}</p>
           </div>
         </div>
@@ -37,7 +37,8 @@
   </div>
 </template>
 <script>
-import { GET_POST_BY_ID } from "@/gql/query";
+import { GET_POST_BY_ID, ADD_LIKE } from "@/gql/query";
+
 export default {
   apollo: {
     post: {
@@ -51,7 +52,18 @@ export default {
         console.log(error);
       }
     }
-  }
+      },
+ methods: {
+     async addlike() {
+      await this.$apollo.mutate({
+        mutation: ADD_LIKE,
+        variables: {
+          id:this.post.id
+        }
+      });
+    }
+  },
+
 };
 </script>
 

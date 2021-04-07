@@ -17,8 +17,6 @@
       <img class="w-10 h-10 rounded-full border border-2 border-red-200 my-auto" :src="data.author.photo">
      <p class="text-sm font-mono my-auto p-2">By {{ data.author.name }}</p></NuxtLink>
       </div>  
-      <button @click="onEdit(data.id)">Edit</button>
-      <button @click="onDelete(data.id)">Delete</button>
     </div>
   </div>
 </template>

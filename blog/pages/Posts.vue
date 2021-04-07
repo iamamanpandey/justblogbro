@@ -27,8 +27,7 @@
           <template v-for="(item, index) in posts" class="">
             <Postcard
               :data="item"
-              :onRefetch="refetchData"
-              :onDelete="deletePost" 
+              :onRefetch="refetchData" 
               :key="index"
             />
           </template>
@@ -39,7 +38,7 @@
 </template>
 
 <script>
-import { DELETE_POST, GET_ALL_POST } from "@/gql/query";
+import { GET_ALL_POST } from "@/gql/query";
 import SideBar from "~/components/SideBar.vue";
 
 export default {
@@ -53,16 +52,6 @@ export default {
     },
   },
   methods: {
-    async deletePost(id) {
-      await this.$apollo.mutate({
-        mutation: DELETE_POST,
-        variables: {
-          id: id,
-        },
-      });
-      alert("post has been deleted");
-      this.refetchData();
-    },
     onLogOut() {
       this.$store.commit("logoutUser");
     },
