@@ -16,7 +16,8 @@
           <h2 class="text-4xl font-semibold leading-tight">{{post.title}}</h2>
           <span class="py-6"  v-html="post.description"></span>
           <div>
-            <button  @click="addlike()" class="bg-red-200 p-2 border shadow-lg rounded">like</button>
+
+            <button  @click="addlike()" class="bg-red-200 p-2 border shadow-lg rounded" >like</button>
             <p>{{post.likecount}}</p>
           </div>
         </div>
@@ -61,6 +62,13 @@ export default {
           id:this.post.id
         }
       });
+      this.refetchLike();
+    },
+     refetchLike() {
+      this.$apollo.queries.post.refetch();
+    },
+    isLiked(){
+    
     }
   },
 

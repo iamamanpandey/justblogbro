@@ -110,6 +110,7 @@ export default {
     clearData() {
       this.formData.title = null;
       this.formData.description = null;
+      this.file=null;
     }
   }
 };

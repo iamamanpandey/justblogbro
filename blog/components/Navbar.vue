@@ -56,7 +56,8 @@
               </div>
 
               <div class="flex" v-if="isLoggedIn">
-                <p class="my-auto mx-4">{{ $store.state.user.name }}</p>
+        <img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/>
+                
                 <nuxt-link to="/login">
                   <button
                     @click="onlogout"

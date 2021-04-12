@@ -80,7 +80,7 @@ export default {
     // },
     updatePost: async (parent, { id, data }, ctx) => {
       try {
-        await Posts.findByIdAndUpdate({ id, author: ctx.user.sub }, data, {
+        await Posts.findByIdAndUpdate({ _id:id, author: ctx.user.sub }, data, {
           new: true,
         });
         return "Updated post succesfully";

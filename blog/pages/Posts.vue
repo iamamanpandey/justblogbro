@@ -2,8 +2,6 @@
   <div>
     <div class="mx-auto text-center">
       <div class="flex justify-end p-4" v-if="$store.state.isAuthenticated">
-       
-        <img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/>
         <button
           class="bg-blue-500 px-4 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:bg-red-500"
           @click="onLogOut">

@@ -90,7 +90,7 @@ mutation deletePost($id:ID!){
 }
 `;
 
-export const EDIT_POST = gql`
+export const UPDATE_POST = gql`
   mutation updatePost($id: ID!, $data: PostInput!) {
     result: updatePost(id: $id, data: $data)
   }

@@ -2,7 +2,6 @@ import { GET_ME, GET_AUTHOR_BY_ID } from "~/gql/query";
 
 export const state = () => ({
   user: {},
-
   isAuthenticated: false
 });
 
@@ -15,8 +14,6 @@ export const mutations = {
   setUser(state, param) {
     state.isAuthenticated = true;
     state.user = param.user;
-
-    // if(param.isLogin){
     this.$router.push("/");
   },
 
@@ -46,6 +43,7 @@ export const actions = {
     }
   }
 };
+
 export const action = {
   async nuxtServerInit({ commit }, context) {
     try {
