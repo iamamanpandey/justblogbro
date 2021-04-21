@@ -3,7 +3,12 @@
     <div v-if="!author"></div>
     <div v-else>
       <div class="container mx-auto my-5 p-5 shadow-lg">
+        <h1>{{author.name}}</h1>
+        <h2>{{author.email}}</h2>
+        
         <h1>posts</h1>
+
+        
         <div v-for="item in author.posts" :key="item.id" class="flex">
           <div class="px-6 py-8">
             <div class="flex justify-between container mx-auto">

@@ -6,6 +6,9 @@
 </template>
 
 <style>
+body{
+  background-color: #F4F8FB;
+}
 html {
   font-family:
     'Source Sans Pro',
@@ -65,4 +68,6 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+
 </style>

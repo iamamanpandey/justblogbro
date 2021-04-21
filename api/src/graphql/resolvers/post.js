@@ -9,9 +9,7 @@ export default {
   Query: {
     post: async (parent, args, ctx) => {
       var singlepost = await Posts.findById(args.id).populate("author").exec();
-      singlepost.likecount = singlepost.likes.length
-        ? singlepost.likes.length
-        : 0;
+      singlepost.likecount = singlepost.likes.length ? singlepost.likes.length : 0;
       return singlepost;
     },
 

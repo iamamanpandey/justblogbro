@@ -24,12 +24,6 @@
                 About Us
               </nuxt-link>
               <nuxt-link
-                to="/posts"
-                class="ml-4 font-medium text-gray-700 hover:text-gray-900 sm:ml-8"
-               >
-                Posts
-              </nuxt-link>
-              <nuxt-link
                 to="/contactus"
                 class="ml-4 font-medium text-gray-700 hover:text-gray-900 sm:ml-8"
                >
@@ -56,7 +50,7 @@
               </div>
 
               <div class="flex" v-if="isLoggedIn">
-        <img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/>
+       <NuxtLink :to="`/profile/${$store.state.user.id}`"><img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/></NuxtLink>
                 
                 <nuxt-link to="/login">
                   <button
@@ -193,7 +187,7 @@
                   </nuxt-link>
 
                   <nuxt-link
-                    to="/posts"
+                    to="/"
                     class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-200"
                   >
                     <!-- Heroicon name: shield-check -->

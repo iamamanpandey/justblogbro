@@ -23,15 +23,17 @@ const postSchema = new Schema(
       ref: "Categories",
     },
 
-    likes: [{ 
-    type: Schema.Types.ObjectId,
-    ref: "Authors",
-  }],
-
-    claps: [{type: Schema.Types.ObjectId, ref: "Authors" }],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Authors",
+      },
+    ],
+    claps: [{ type: Schema.Types.ObjectId, ref: "Authors" }],
 
     kohinoors: [{ type: Schema.Types.ObjectId, ref: "Authors" }],
   },
+
   { timestamps: true }
 );
 

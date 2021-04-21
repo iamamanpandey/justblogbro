@@ -1,22 +1,37 @@
 <template>
-  <div 
-  class="max-w-sm mx-auto border border-light-red-300 mb-6 w-full md:w-1/2 lg:w-1/2 bg shadow-lg rounded-lg transition duration-100 ease-in-out hover:bg-red-200 transform hover:-translate-y-4 hover:scale-100">
-   <div @click="authotProfile(authprofile.id)">
-    <img class="object-cover img rounded-t-lg" :src="data.photo" /></div>
-    <div class="py-2 px-4">
-      <h1 class="text-2xl font-sans">{{ data.title }}</h1>
-      <h2 class="leading-snug font-sans">
-        <span v-html="data.description" class="line-clamp"> </span>
-        <NuxtLink :to="`/post/${data.id}`" class="text-red-500" >read more</NuxtLink>
-        <h1>{{data.likecount}}</h1>
-      </h2>
+  <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+    <div
+      class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg"
+    > <NuxtLink :to="`/post/${data.id}`">
+      <img :src="data.photo" class="h-64 w-full rounded-t pb-6" />
+      <p class="w-full text-gray-600 text-xs md:text-sm px-6">
+        GETTING STARTED
+      </p>
+     
+        <div
+          class="w-full font-bold text-xl text-gray-900 px-6 hover:text-red-800"
+        >
+          {{ data.title }}
+        </div>
+      <span
+        v-html="data.description"
+        class="line-clamp text-gray-800 font-serif text-base px-6 mb-5"
+      ></span></NuxtLink>
+
     </div>
-    <div class="relative flex justify-between px-2 py-1 ">
-      <div class="flex position">
-        <NuxtLink :to="`/profile/${data.author.id}`" class="text-red-500" >
-      <img class="w-10 h-10 rounded-full border border-2 border-red-200 my-auto" :src="data.author.photo">
-     <p class="text-sm font-mono my-auto p-2">By {{ data.author.name }}</p></NuxtLink>
-      </div>  
+    <div
+      class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6"
+     >
+      <div class="flex items-center justify-between">
+        <NuxtLink :to="`/profile/${data.author.id}`">
+          <img
+            class="w-10 h-10 rounded-full border border-2 border-red-200 my-auto"
+            :src="data.author.photo"
+          />
+         </NuxtLink>
+        <p>! min read</p>
+
+      </div>
     </div>
   </div>
 </template>
@@ -38,9 +53,9 @@ export default {
   width: 384px;
 }
 .line-clamp {
-   display: -webkit-box;
+  display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 </style>
