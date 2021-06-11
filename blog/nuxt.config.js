@@ -13,18 +13,21 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
+   css: [
+    'quill/dist/quill.core.css',
+    // for snow theme
     'quill/dist/quill.snow.css',
-    'quill/dist/quill.bubble.css',
-    'quill/dist/quill.core.css'
+    // for bubble theme
+    'quill/dist/quill.bubble.css'
   ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  /*
+   ** Plugins to load before mounting the App
+   */
   plugins: [
-
-
+   
+ 
+  
   ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 

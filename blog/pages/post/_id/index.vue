@@ -1,13 +1,11 @@
 <template>
   <div class="max-w-screen-xl mx-auto">
     <div v-if="!post"></div>
-
     <!--component-->
     <div class="flex flex-row flex-wrap" v-else>
       <div class="text-center pt-6 mx-auto">
         <p class="text-sm md:text-base text-green-500 font-bold">
           08 APRIL 2019 <span class="text-gray-900">/</span> GETTING STARTED
-        </p>
         <h2 class="text-4xl font-semibold leading-tight">
           {{ post.title }}
         </h2>
@@ -19,7 +17,6 @@
       >
         <img :src="post.photo" class="w-full" />
       </div>
-
       <div class="container max-w-5xl mx-auto -mt-32">
         <div class="mx-0 sm:mx-6">
           <div
@@ -27,11 +24,10 @@
             style="font-family: Georgia, serif"
           >
             <!--Post Content-->
-
-            <span class="py-6" v-html="post.description"></span>
-
+            <div class="py-6 ql-editor" v-html="post.description"></div>
             <button
-              @click="addlike()"
+              @click="addlike()" 
+                v-bind:class="[addlike==true ?'red' :'blue']"
               class="bg-red-200 p-2 mt-2 border shadow-lg rounded"
             >
               like
@@ -77,6 +73,12 @@
 import { GET_POST_BY_ID, ADD_LIKE } from "@/gql/query";
 
 export default {
+
+ data() {
+    return {
+     isLiked:false
+    };
+  },
   apollo: {
     post: {
       query: GET_POST_BY_ID,
@@ -85,10 +87,10 @@ export default {
           id: this.$route.params.id,
         };
       },
-      error(error) {
+      error(error){
         console.log(error);
-      },
-    },
+      }
+    }
   },
   methods: {
     async addlike() {
@@ -102,9 +104,17 @@ export default {
     },
     refetchLike() {
       this.$apollo.queries.post.refetch();
-    },
-    isLiked() {},
-  },
+    }
+  }
 };
 </script>
+
+<style>
+.red{
+  background: red;
+}
+.blue{
+  background-color: blue;
+}
+</style>
 

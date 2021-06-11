@@ -20,13 +20,18 @@
         type="text"
         v-model="formData.title"
       />
-
+       <client-only>
       <quill-editor
         v-model="formData.description"
         ref="myQuillEditor"
         :options="editorOption"
-        class="my-6"
+         @change="onEditorChange($event)"
+         @blur="onEditorBlur($event)"
+         @focus="onEditorFocus($event)"
+         @ready="onEditorReady($event)"
+     class="edit_container"
       ></quill-editor>
+      </client-only>
 
       <div class="buttons flex m-2">
         <div
@@ -49,7 +54,11 @@
 
 <script>
 import { ADD_POST } from "@/gql/query";
-import { quillEditor, Quill } from "vue-quill-editor";
+import dedent from 'dedent'
+import {quillEditor} from "vue-quill-editor"; //Call the editor
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css'
 
 export default {
   props: {
@@ -59,19 +68,33 @@ export default {
     return {
       formData: {
         title: "",
-        description: "",
+        description: dedent`<p>Example of a very good blog post</p>`,
       },
       file: null,
       editorOption: {
-        // some quill options
+        // Some Quill options...
+        theme: 'snow',
         modules: {
           toolbar: [
-            ["bold", "italic", "underline", "strike"],
-            ["blockquote", "code-block", "image", "link"],
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+            [{ header: 1 }, { header: 2 }],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ script: 'sub' }, { script: 'super' }],
+            [{ indent: '-1' }, { indent: '+1' }],
+            [{ direction: 'rtl' }],
+            [{ size: ['small', false, 'large', 'huge'] }],
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            [{ font: [] }],
+            [{ color: [] }, { background: [] }],
+            [{ align: [] }],
+            ['clean'],
+            ['link', 'image', 'video']
           ],
-        },
-      },
-    };
+          
+        }
+      }
+    }
   },
   components: { quillEditor },
   methods: {
@@ -90,6 +113,21 @@ export default {
       }
       this.$router.push({ path: `/` });
     },
+  onEditorBlur(editor) {
+        console.log('editor blur!', editor)
+      },
+      onEditorFocus(editor) {
+        console.log('editor focus!', editor)
+      },
+      onEditorReady(editor) {
+        console.log('editor ready!', editor)
+      },
+      onEditorChange({ editor, html, text }) {
+        console.log('editor change!', editor, html, text)
+        this.content = html
+      },
+
+
     // async uploadbanner() {
     //     try {
     //       const res = await this.$apollo.mutate({

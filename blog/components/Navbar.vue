@@ -50,7 +50,7 @@
               </div>
 
               <div class="flex" v-if="isLoggedIn">
-       <NuxtLink :to="`/profile/${$store.state.user.id}`"><img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/></NuxtLink>
+        <NuxtLink :to="`/profile/${$store.state.user.id}`"><img class="rounded-full  w-12 h-12 mx-10 object-cover animate-pulse ring ring-pink-600 ring-offset-4 "  :src="$store.state.user.photo"/></NuxtLink>
                 
                 <nuxt-link to="/login">
                   <button
